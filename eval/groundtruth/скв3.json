@@ -1,0 +1,1673 @@
+{
+  "pdf": "Дуга_БЛ_4-2021.pdf",
+  "borehole": "скв3",
+  "line": 4,
+  "reader": "ручная разметка заказчика (эталон #2)",
+  "notes": [
+    "Второй эталон (невылизанная скважина) — детектор регрессий фиксов.",
+    "гр9-18 заполнена плотно: числа-тройки 25/72/63, 89/252/222, 393/1116/982 в графах 16/17/18.",
+    "гр1-8 — 11 проходок (0,4…4,4).",
+    "показатели/контроль/самородки пустые — верно."
+  ],
+  "scoring": {
+    "exclude_from_text": [
+      "empty==true",
+      "graphic==true"
+    ],
+    "check_separately": [
+      "ditto flag",
+      "empty flag",
+      "merges",
+      "graph_numbers"
+    ],
+    "text_strict": "точное совпадение",
+    "text_fuzzy": [
+      "trim",
+      "lower",
+      "collapse_spaces",
+      "ditto→<ditto>",
+      "числа ','↔'.'",
+      "ё→е"
+    ],
+    "report": [
+      "strict/fuzzy на объект и суммарно",
+      "по движкам",
+      "row_count",
+      "merges_match",
+      "живой fuzzy отдельно"
+    ]
+  },
+  "objects": {
+    "самородки": {
+      "sheet": "Характеристика самородков скв3",
+      "columns": [
+        "№ проходок(проб)",
+        "Количество и вес самородков",
+        "Размер в трёх измерениях",
+        "Окатанность, включая налёты, схематическая зарисовка и др."
+      ],
+      "merges": [],
+      "header_rows": 1,
+      "row_key_col": 0,
+      "data": []
+    },
+    "подсчёт": {
+      "sheet": "Результаты подсчета скв3",
+      "columns": [
+        "Пробность золота: содержание олова проц. — Наименование показателей",
+        "Лимитность — единица измерения",
+        "Лимитность — на пласт.",
+        "Лимитность — на массу",
+        "Подсчёт произвел n/_Геолог_____(должность) n/ _______(подпись  и фамилия) n/ <<_11__>> __11____ 20_21_ г."
+      ],
+      "merges": [
+        "B1:D1",
+        "E1:E7"
+      ],
+      "header_rows": 2,
+      "row_key_col": 0,
+      "title": "Пробность золота: содержание олова проц.",
+      "data": [
+        [
+          {
+            "text": "Глубина выемки",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "м",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "3,6",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "Мощность торфов",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": ">>",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "2,4",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "Мощность песков",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": ">>",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "1.2",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "Среднее содержание",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "мг-м куб.",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "402",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "141",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "Вертикальный запас",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "мг-м куб.",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "482",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "507",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ]
+      ]
+    },
+    "гр1-8": {
+      "sheet": "Скв3 гр 1-8",
+      "columns": [
+        "№ проходок (проб)",
+        "Глубина, м. — скважина",
+        "Глубина, м. — обсадки трубами",
+        "Литологический разрез",
+        "ОПИСАНИЕ РАЗРЕЗА",
+        "Отметка о таликах, мерзлоте и водоносности",
+        "Категория породы",
+        "Объем извлеченной породы, см^3"
+      ],
+      "merges": [
+        "D1:D2",
+        "G1:G2",
+        "E1:E2",
+        "F1:F2",
+        "H1:H2",
+        "B1:C1",
+        "A1:A2"
+      ],
+      "header_rows": 2,
+      "row_key_col": 0,
+      "graph_numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "data": [
+        [
+          {
+            "text": "1",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "0.4",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "//=//=",
+            "empty": false,
+            "ditto": false,
+            "graphic": true
+          },
+          {
+            "text": "шл. 0,0-0,4м JPC.",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "тало",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "2",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "0.8",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "шл. 0,4-3,2м Грав -",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "IV",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "5554",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "3",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "1.2",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "галечн. отложения р/з",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "4",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "1.6",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "с песчн. - глин материалом",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "5",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "2.0",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "6",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "2.4",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "7",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "2.8",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "8",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "3.2",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "9",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "3.6",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "x x",
+            "empty": false,
+            "ditto": false,
+            "graphic": true
+          },
+          {
+            "text": "шл. 3.2 -4.4м Коренн. породы",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "VI",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "10",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "4.0",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "x x",
+            "empty": false,
+            "ditto": false,
+            "graphic": true
+          },
+          {
+            "text": "представ. Диорита мл.",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "11",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "4.4",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "x x",
+            "empty": false,
+            "ditto": false,
+            "graphic": true
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          }
+        ]
+      ]
+    },
+    "гр9-18": {
+      "sheet": "Скв3 гр 9-18",
+      "columns": [
+        "Объем породы теоретический см^3",
+        "Диаметр скважины по кавернометру",
+        "Результат опробирования мг — визуально",
+        "Результат опробирования мг — лабораторн. вес",
+        "Вес металла, получен. от  дополнит промывки",
+        "Вес металла, принят в подсчёт",
+        "Процент — каменистости",
+        "Процент — ледянистости",
+        "Среднее содержание по промывке",
+        "Содержание металла на куб. м с учетом пробности"
+      ],
+      "merges": [
+        "C1:D1",
+        "G1:H1",
+        "B1:B2",
+        "E1:E2",
+        "F1:F2",
+        "I1:I2",
+        "J1:J2",
+        "A1:A2"
+      ],
+      "header_rows": 2,
+      "row_key_col": null,
+      "graph_numbers": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "data": [
+        [
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "б/о",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "Wз",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "5554",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "пс",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "пс",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "пс",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "пс",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "нз",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "0.4",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "25",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "72",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "63",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "нз",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "1.4",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "89",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "252",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "222",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "пс",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "зн",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "6.2",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "393",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "1116",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "982",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "пс",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "-ll-",
+            "empty": false,
+            "ditto": true,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "пс",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ]
+      ]
+    },
+    "показатели": {
+      "sheet": "Скв 3 показатели",
+      "columns": [
+        "ПОКАЗАТЕЛИ",
+        "На пласт.",
+        "На выем. мощ",
+        "На массу"
+      ],
+      "merges": [],
+      "header_rows": 1,
+      "row_key_col": 0,
+      "data": [
+        [
+          {
+            "text": "Общий вес металла по скважине, мг",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "Вес металла введенного в подсчёт, мг",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "Площадь скважин для теорет. объема, кв. см",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ],
+        [
+          {
+            "text": "Средний коэффициент по объему",
+            "empty": false,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          },
+          {
+            "text": "",
+            "empty": true,
+            "ditto": false,
+            "graphic": false
+          }
+        ]
+      ]
+    },
+    "контроль": {
+      "sheet": "Скв 3 контроль",
+      "columns": [
+        "Дата контроля",
+        "Что контролируется",
+        "Вес металла"
+      ],
+      "merges": [],
+      "header_rows": 1,
+      "row_key_col": 0,
+      "data": []
+    }
+  }
+}

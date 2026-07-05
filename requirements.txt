@@ -1,0 +1,21 @@
+# Рендер PDF (нужен внешний poppler; авто-поиск в src.config.bootstrap_poppler)
+pdf2image>=1.17
+# Обработка изображений / геометрия
+opencv-python>=4.8
+numpy>=1.24
+pillow>=10
+# HTTP-клиенты к OCR/VLM
+requests>=2.31
+# Сборка Excel
+openpyxl>=3.1
+# Модели данных
+pydantic>=2.6
+# CLI
+typer>=0.12
+# Конфиг / секреты
+python-dotenv>=1.0
+pyyaml>=6.0
+# Логи
+loguru>=0.7
+# GUI (Tkinter — stdlib). Drag&drop — опционально; без него GUI работает по кнопке.
+tkinterdnd2>=0.3 ; python_version >= "3.8"

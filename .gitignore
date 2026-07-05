@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# Secrets
+.env
+.env.*
+
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+
+# Cache
+.cache/
+.pytest_cache/
+.mypy_cache/
+
+# Logs
+*.log
+
+# Build
+build/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Outputs
+output/
+outputs/
+results/
+temp/
+tmp/
+
+# Промежуточные данные пайплайна (картинки, кэш)
+data/interim/
+data/output/
+
+# Логи
+*.log
+logs/
