@@ -1,71 +1,166 @@
-# Распознавание рукописных буровых журналов (PDF → Excel)
+# PDF Table OCR — Распознавание рукописных буровых журналов
 
-Программа сама обрабатывает PDF-сканы заполненных от руки бланков «ДОКУМЕНТАЦИЯ
-СКВАЖИН УДАРНО-КАНАТНОГО (КОЛОНКОВОГО) БУРЕНИЯ» (АО ЗДП «Коболдо») и выгружает
-ВСЕ таблицы и формы в Excel **структурированно** (шапка со слияниями «как в
-бланке»), а не плоским текстом. Каждый объект → отдельный лист.
+Инструмент для автоматической обработки PDF-сканов заполненных от руки бланков **«Документация скважин ударно-канатного (колонкового) бурения»** 
+
+Программа не просто извлекает текст — она **сохраняет структуру бланка**: таблицы с объединёнными ячейками, шапки, подписи и примечания выгружаются в Excel ровно так, как они выглядят в оригинале. Каждая скважина → отдельный лист в `.xlsx`.
+
+## Что умеет
+
+- **Гибридный OCR-движок** — Qwen-VL определяет структуру таблиц (строки/колонки), а Yandex Vision читает рукописный текст в каждой ячейке. Расхождения между движками автоматически помечаются как `needs_review`.
+- **Сохранение геометрии бланка** — объединённые ячейки, заголовки, вертикальные разделители переносятся в Excel без потерь.
+- **Полный пайплайн предобработки** — рендер PDF → разрез разворота → deskew → CLAHE-усиление → извлечение сетки.
+- **Экспорт в несколько форматов** — `.xlsx`, `.json`, отчёты о качестве распознавания.
+- **Два интерфейса** — удобный GUI на Tkinter для операторов и CLI для пакетной обработки.
+- **Инвентаризация объектов** — автоматический локатор 8 типов объектов (паспорт, таблицы, подписи, примечания) на каждой странице.
+- **Оценка качества** — встроенные метрики сравнения с ground truth.
+
+## Технологический стек
+
+| Категория | Технологии |
+|-----------|------------|
+| Язык | Python 3.10+ |
+| OCR-движки | Qwen-VL (OpenRouter), Yandex Vision OCR |
+| Работа с PDF | PyMuPDF (fitz), pdf2image + Poppler |
+| Изображения | OpenCV, Pillow |
+| Данные | Pydantic, openpyxl, pandas |
+| Интерфейс | Tkinter (GUI), Click (CLI) |
+| Конфигурация | YAML, python-dotenv |
+
+## Установка
+
+### 1. Клонируй репозиторий
+```bash
+git clone https://github.com/Xolopenya/pdf-table-ocr.git
+cd pdf-table-ocr
+```
+
+### 2. Установи зависимости
+```bash
+python -m pip install -r requirements.txt
+```
+
+### 3. Установи Poppler (обязательно для pdf2image)
+- **Windows**: скачай с [github.com/oschwartz10612/poppler-windows](https://github.com/oschwartz10612/poppler-windows/releases), распакуй и добавь `bin/` в `PATH`.
+- **macOS**: `brew install poppler`
+- **Linux**: `sudo apt install poppler-utils`
+
+### 4. Настрой API-ключи
+```bash
+cp .env.example .env
+```
+Открой `.env` и впиши свои ключи:
+```env
+YANDEX_OCR_API_KEY=твой_ключ
+YANDEX_OCR_FOLDER_ID=твой_folder_id
+OPENROUTER_API_KEY=твой_ключ_для_qwen
+```
+
+## Использование
+
+### GUI (для операторов)
+Самый простой способ — запустить графический интерфейс:
+```bash
+python run_gui.py
+```
+Дальше всё интуитивно: выбираешь PDF → ждёшь прогресс → получаешь Excel и JSON. Есть кнопки «Открыть папку с результатом».
+
+### CLI (для пакетной обработки)
+```bash
+# Обработать один PDF (результат в data/output/)
+python -m src.cli process путь/к/файлу.pdf --engine hybrid
+
+# Обработать всю папку с PDF
+python -m src.cli process data/raw/
+
+# Только первая скважина (для отладки)
+python -m src.cli process --first-only
+
+# Без обращения к API (использовать только кэш)
+python -m src.cli process --dry-run
+
+# Инвентаризация: посмотреть, какие объекты найдены на страницах
+python -m src.cli inventory
+```
+
+### Как Python-библиотека
+```python
+from src.pipeline.process import process_pdf
+
+result = process_pdf("скан_журнала.pdf", engine="hybrid")
+print(result["xlsx"])   # путь к Excel-файлу
+print(result["json"])   # путь к JSON
+print(result["report"]) # отчёт о качестве
+```
 
 ## Архитектура
 
-**КОЛОНКИ — из фикс-спек**, не детектируются (вертикальные рули бланка бледные и
-ненадёжны). **СТРОКИ** сверяются с горизонталями (надёжны). **Текст** — гибрид:
-Qwen-VL раскладывает строки/колонки и размечает «-ll-»/пустые, Yandex handwritten
-читает текст каждой непустой ячейки; расхождение движков → `needs_review`.
+Проект построен по принципу **модульного пайплайна**. Каждый этап — отдельный модуль, который можно тестировать и заменять независимо.
 
-Поток: `render_pdf → split_spread → deskew_projection → enhance → extract_grid`
-(всё из готового `preprocess.py`) → `inventory` (локатор объектов) →
-`hybrid`/`ocr_qwen`/`ocr_yandex` → `forms_layout`/`forms_kv` → `export` (.xlsx+.json+_meta).
-
-| Модуль | Роль |
-|---|---|
-| `pipeline/preprocess.py` | готовый модуль: рендер, разрез разворота, deskew, CLAHE, сетка |
-| `pipeline/inventory.py` | локатор 8 типов объектов на каждой половине (тип + область) |
-| `pipeline/forms_layout.py` | 6 фикс-спек + `write_spec` (шапка/слияния/фикс-строки) + `detect_kind` |
-| `pipeline/ocr_yandex.py` | Yandex OCR (handwritten/table) + кэш/ретраи/dry-run |
-| `pipeline/ocr_qwen.py` | Qwen-VL (OpenRouter): раскладка таблиц + key-value форм |
-| `pipeline/hybrid.py` | основной движок «спека×строки» + сверка Qwen↔Yandex |
-| `pipeline/forms_kv.py` | титул «ЖУРНАЛ» и «АКТ» как key-value |
-| `pipeline/assemble.py` | `expand_ditto`, порядок строк (из reference) |
-| `pipeline/export.py` | листы Excel + служебный `_meta` |
-| `pipeline/process.py` | оркестратор: PDF → объекты → движок → .xlsx |
-| `src/models.py`, `src/cli.py` | pydantic-модели, CLI |
-| `eval/score.py` | метрики (a) текст vs GT, (b) число строк, (c) расхождения гибрида |
-| `reference/dedmos_ocr/` | проект-референс (база forms_layout/assemble/ocr_yandex) |
-
-Опорные ассеты (`reference/dedmos_ocr/`, `preprocess.py`) переиспользованы, не
-переписаны. Прежний геометрический детект колонок удалён (по ТЗ).
-
-## Установка
-```bash
-python -m pip install -r requirements.txt   # + внешний poppler (для pdf2image)
-cp .env.example .env                         # вписать ключи
 ```
-Poppler ищется автоматически (`src.config.bootstrap_poppler`); путь можно задать
-в `configs/default.yaml: poppler_path`. Python 3.11+ (проверено на 3.14).
-
-## Ключи (только `.env`, не коммитить, не логировать)
-`YANDEX_OCR_API_KEY` (или `YANDEX_API_KEY`), `YANDEX_FOLDER_ID`, `OPENROUTER_API_KEY`.
-Логи маскируют ключи; ответы движков кэшируются на диск (`.cache/`) — перезапуск не платит.
-
-## Запуск
-
-**Ядро** — единая функция `src.pipeline.process.process_pdf(path, engine="hybrid")
--> {"xlsx", "json", "report"}`. CLI и GUI — тонкие обёртки над ней. Один PDF →
-один `.xlsx` (листы по всем скважинам/объектам) + один `.json`, автоматически.
-
-```bash
-# GUI: вставил PDF -> Excel + JSON (обработка в потоке, прогресс, кнопки «Открыть»)
-python run_gui.py
-
-# CLI: весь PDF (все скважины) -> data/output/<stem>_<engine>.{xlsx,json}
-python -m src.cli process --engine hybrid
-python -m src.cli process data/raw/                  # вся папка -> файл на PDF
-python -m src.cli process --first-only               # только 1-я скважина (отладка)
-python -m src.cli process --dry-run                  # без сети (только кэш)
-python -m src.cli inventory                          # инвентаризация (растры/overlay)
-
-# Метрики vs эталон
-python -m eval.score data/output/*_hybrid.json --gt eval/groundtruth/скв2.json
+PDF → render_pdf → split_spread → deskew_projection → enhance → extract_grid
+    ↓
+inventory (локатор объектов: паспорт, таблицы, подписи...)
+    ↓
+гибридный OCR:
+  • Qwen-VL → разметка структуры таблиц (строки/колонки)
+  • Yandex OCR → чтение текста в каждой ячейке
+  • сверка результатов → флаг needs_review при расхождениях
+    ↓
+forms_layout + forms_kv → сборка форм с учётом объединённых ячеек
+    ↓
+export → .xlsx (листы по скважинам) + .json + _meta
 ```
 
-Статус и следующий шаг — в [PROGRESS.md](PROGRESS.md).
+### Ключевые модули
+
+| Модуль | Что делает |
+|--------|------------|
+| `pipeline/preprocess.py` | Рендер PDF, разрез разворота, deskew, CLAHE, извлечение сетки |
+| `pipeline/inventory.py` | Находит 8 типов объектов на каждой половине разворота |
+| `pipeline/forms_layout.py` | 6 фиксированных спеков форм + детектор типа |
+| `pipeline/ocr_yandex.py` | Yandex OCR с кэшем и ретраями |
+| `pipeline/ocr_qwen.py` | Qwen-VL через OpenRouter |
+| `pipeline/hybrid.py` | Основной движок: спека × строки + сверка Qwen↔Yandex |
+| `pipeline/forms_kv.py` | Титульные листы «ЖУРНАЛ» и «АКТ» как key-value |
+| `pipeline/assemble.py` | Развёртывание дубликатов (ditto), порядок строк |
+| `pipeline/export.py` | Генерация Excel-листов и служебного `_meta` |
+| `pipeline/process.py` | Оркестратор всего пайплайна |
+
+## Конфигурация
+
+Все настройки лежат в `configs/default.yaml`:
+- Движки OCR и их параметры
+- Пути к входным/выходным данным
+- Пороги уверенности для `needs_review`
+- Параметры предобработки изображений
+
+## Оценка качества
+
+В папке `eval/` лежит скрипт `score.py` для сравнения результатов с ground truth:
+- **(a)** Точность распознанного текста vs эталон
+- **(b)** Корректность определения числа строк
+- **(c)** Статистика расхождений между Qwen и Yandex
+
+```bash
+python eval/score.py
+```
+
+## Пример результата
+
+После обработки одного PDF ты получишь:
+```
+data/output/
+├── Дуга_БЛ-4-2021_hybrid.xlsx   # Excel с листами по скважинам
+├── Дуга_БЛ-4-2021_hybrid.json   # Структурированные данные
+```
+
+В Excel каждая скважина — отдельный лист, таблицы сохраняют оригинальную структуру с объединёнными ячейками.
+
+## Roadmap
+
+- [ ] Поддержка других типов буровых журналов
+- [ ] Экспорт в CSV и базы данных (PostgreSQL)
+- [ ] Веб-интерфейс на FastAPI + React
+- [ ] Дообучение модели на кастомных данных
+- [ ] Пакетная обработка с очередью задач (Celery)
+
